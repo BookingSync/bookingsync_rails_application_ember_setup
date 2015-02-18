@@ -31,6 +31,8 @@ class EmberBookingSyncSetupGenerator < Rails::Generators::Base
 To run Ember apps from BookingSync App Store you need to use localui ENV in development.
 Add: export RAILS_ENV=localui to .powenv file.
 
+If you are inheriting from JSONAPI::ResourceController you may need to use prepend_before_action :authenticate_account! instead of before_action to ensure current_account is present.
+
 ========================================================================================
 ========================================================================================
 
@@ -74,7 +76,7 @@ MESSAGE
     end
   end
   CONFIG
-    inject_into_file "config/application.rb", rack_cors_config, before: /^end/
+    inject_into_file "config/application.rb", rack_cors_config, before: /^\s\send/
   end
 
   def set_up_localui
