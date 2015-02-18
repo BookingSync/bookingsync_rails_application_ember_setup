@@ -63,19 +63,19 @@ MESSAGE
 
   def add_rack_cors_config
     rack_cors_config = <<-CONFIG
-  # Necessary to use a remote frontend during UI development.
-  if Rails.env.localui? || Rails.env.remoteui?
-    config.middleware.insert_before "Rack::Sendfile", "Rack::Cors" do
-      allow do
-        origins '*'
-        resource "#{options[:rack_cors_resource]}",
-          headers: :any,
-          expose: [],
-          methods: [:get, :post, :put, :delete, :options]
+    # Necessary to use a remote frontend during UI development.
+    if Rails.env.localui? || Rails.env.remoteui?
+      config.middleware.insert_before "Rack::Sendfile", "Rack::Cors" do
+        allow do
+          origins '*'
+          resource "#{options[:rack_cors_resource]}",
+            headers: :any,
+            expose: [],
+            methods: [:get, :post, :put, :delete, :options]
+        end
       end
     end
-  end
-  CONFIG
+    CONFIG
     inject_into_file "config/application.rb", rack_cors_config, before: /^\s\send/
   end
 
