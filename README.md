@@ -1,6 +1,6 @@
 # BookingsyncRailsApplicationEmberSetup
 
-Generator for setting up Rails application to work with Ember in Bookingsync App Store.
+Generator for setting up Rails application to work with Ember in BookingSync App Store.
 
 ## Usage
 
